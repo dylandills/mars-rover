@@ -1,13 +1,14 @@
-<h1>Curiousity Images</h1>
+<h1 class="text-center">Curiousity Images</h1>
+<h3 class="text-center"><a routerLink="user/photos">View Your Saved Photos</a></h3>
 
-<form>
+<form class="well">
   <div class="form-group">
     <label for="camera">Date</label>
-    <input type=date #roverDate>
+    <input class='form-control' type=date #roverDate>
   </div>
   <div class="form-group">
     <label for="camera">Camera</label>
-    <select #roverCamera>
+    <select #roverCamera class="form-control">
       <option value="FHAZ">Front Hazard Avoidance Camera</option>
       <option  value="RHAZ">Rear Hazard Avoidance Camera</option>
       <option value="MAST">Mast Camera</option>
@@ -15,11 +16,12 @@
       <option  value="MAHLI">Mars Hand Lens Imager</option>
     </select>
   </div>
-  <button (click)= "getRoverImages(roverDate.value, roverCamera.value)"> Get Photos</button>
+  <button class='btn btn-block btn-primary' (click)="getRoverImages(roverDate.value, roverCamera.value)">Get Photos</button>
+  <button (click)='saveRoverImages(roverDate.value, roverCamera.value)' class="btn btn-block btn-info">Save photos</button>
 </form>
-<div *ngIf="photos">
-  <app-photos-list [childPhotos]="photos"></app-photos-list>
+<div *ngIf='photos'>
+  <app-photos-list [childPhotos]='photos'></app-photos-list>
 </div>
-<div *ngIf="photos">
-  <h3>There were no photos taken on {{roverDate.value}} by the {{roverCamera.value}} camera.</h3>
+<div class='text-center' *ngIf="noPhotos">
+    <h3>There were no photos taken on {{roverDate.value}} by the {{roverCamera.value}} camera.</h3>
 </div>
