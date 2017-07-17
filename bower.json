@@ -1,0 +1,17 @@
+{
+  "name": "mars-rover",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Dylan Dills <dylan.dills@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
