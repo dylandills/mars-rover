@@ -13,8 +13,8 @@ export class MarsRoverAPIPhotos {
     private photoService: PhotoService
   ) { }
 
-  getByDateAndCamera(date: string, camera: string): Observable<any> {
-    return this.http.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&camera=${camera}&api_key=${marsRoverKey}`);
+  getByDateAndCamera(date: string, camera: string) {
+    return this.http.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=" +date+ "&camera=" +camera+ "&api_key="+marsRoverKey);
   }
 
   saveImages(date: string, camera: string) {

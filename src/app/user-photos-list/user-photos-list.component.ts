@@ -5,24 +5,19 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 @Component({
   selector: 'app-user-photos-list',
-  templateUrl: './user-photos-list.component.html',
-  styleUrls: ['./user-photos-list.component.css'],
-  providers: [PhotoService]
+  templateUrl: '/user-photos-list.component.html',
+  styleUrls: [ './user-photos-list.component.css' ],
+  providers: [ PhotoService ]
 })
+
 export class UserPhotosListComponent implements OnInit {
-  savedPhotos: FirebaseListObservable<any[]>;
-
-  constructor(
-    private photoService: PhotoService
-  ) {}
-
-  ngOnInit(): void {
+  constructor(private photoService: PhotoService) { }
+  savedPhotos: FirebaseListObservable <any[]> = null;
+  ngOnInit(){
     this.savedPhotos = this.photoService.getPhotos();
   }
-
-  deletePhoto(selectedPhoto: any):  void {
+  deletePhoto(selectedPhoto: Photo) {
     this.photoService.deletePhoto(selectedPhoto);
-    alert('The selected photo has been deleted.')
+    alert("This image has been deleted from your list of saved images.");
   }
-
 }

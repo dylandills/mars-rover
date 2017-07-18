@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Photo } from './photo.model';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Injectable()
 export class PhotoService {
   photos: FirebaseListObservable<any[]>;
 
-  constructor(
-    private database: AngularFireDatabase
-  ) {
-    this.photos = database.list(`photos`);
+  constructor(private af: AngularFireDatabase) {
+    this.photos = af.list('photos');
   }
-
-  getPhotos(): FirebaseListObservable<any[]> {
-    return this.photos;
-  }
-
-  addPhoto(newPhoto: Photo): void {
+  addPhoto(newPhoto: Photo) {
     this.photos.push(newPhoto);
   }
-
-  deletePhoto(photoToDelete: any): void {
-    this.database.object(`photos/${photoToDelete.$key}`).remove();
+  getPhotos() {
+    return this.photos;
   }
-
-  getPhotoById(photoId: string): FirebaseObjectObservable<any> {
-    return this.database.object(`photos/${photoId}`);
+  deletePhoto(selectedPhoto) {
+    let foundPhoto = this.getPhotoById(selectedPhoto.$key);
+    foundPhoto.remove();
   }
-
+  getPhotoById(photoId: string){
+    return this.af.object('photos/' + photoId);
+  }
 }
